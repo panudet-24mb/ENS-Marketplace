@@ -18,8 +18,8 @@ const ListItem = ({ EnsNameAddress, marketplace, ENSContract, account }) => {
   const getAllENS = async () => {
     setLoadPage(true);
     const config = {
-      apiKey: process.env.ALCHEMY_API,
-      network: Network.ETH_ROPSTEN,
+      apiKey: "ZJSq7hJOZE_3Ndh69PSwraDPSOj0HnzV",
+      network: Network.ETH_GOERLI,
     };
 
     const alchemy = new Alchemy(config);
@@ -37,20 +37,28 @@ const ListItem = ({ EnsNameAddress, marketplace, ENSContract, account }) => {
   const listForSale = async (tokId, ensName) => {
     setLoading(true);
     try {
+      var options =   {   
+        gasLimit:500000,
+        gasPrice:ethers.utils.parseUnits('100','gwei'),                                                                                                               
+    };
       const tx = await ENSContract.setApprovalForAll(
         EnsNameAddress.address,
-        true
+        true,
+        // options
       );
       await tx.wait();
-      let priceInEth = ethers.utils.parseEther(price.toString());
-      const tx2 = await marketplace.listENS(ensName, tokId, priceInEth);
-      await tx2.wait();
-      alert('Awesome! You have now Listed your Item for Sale!');
+      // let priceInEth = ethers.utils.parseEther(price.toString() );
+
+      // const tx2 = await marketplace.listENS(ensName, tokId, priceInEth );
+      // await tx2.wait();
+      // alert('Awesome! You have now Listed your Item for Sale!');
       setLoading(false);
     } catch (err) {
       setLoading(false);
       console.log(err);
     }
+
+    
   };
 
   return (

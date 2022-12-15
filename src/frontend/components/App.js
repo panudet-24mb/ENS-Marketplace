@@ -21,7 +21,7 @@ const App = () => {
   const [ENSContract, setENSContract] = useState('');
   
 
-  const ENSContractAddress = "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85";
+  const ENSContractAddress = "0x1d0528931bed004B6e25d102134d0f28d7b632F3";
 
   useEffect(() => {
     checkIfWalletIsConnected();

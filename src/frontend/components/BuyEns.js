@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
 
+
+
+
 const BuyEns = ({ marketplace, ENSContract }) => {
   const [allListings, setAllListings] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,7 +49,9 @@ const BuyEns = ({ marketplace, ENSContract }) => {
     try {
       const tx = await marketplace.buyENS(item.itemId, {
         value: item.price,
-      });
+        // gasLimit : 1000000
+  
+      } );
       await tx.wait();
       alert('Congrats! You have bought the ENS', item.name);
       setBuyLoading(false);
